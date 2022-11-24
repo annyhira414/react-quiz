@@ -6,10 +6,12 @@ import Login from "./pages/Login";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import Singup from "./pages/Singup";
+import {AuthProvidert} from "../contexts/AuthContext"
 function App() {
   return (
 
     <Router>
+      <AuthProvidert>
       <Layout>
         <Routes>
           {/* <Route exact path="/" component={Home} /> */}
@@ -20,6 +22,7 @@ function App() {
           <Route exact path="/result" element={<Result />} />
         </Routes>
     </Layout>
+    </AuthProvidert>
     </Router>
   );
 }
