@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
-import Signup from "./pages/SingUp";
+import Singup from "./pages/Singup";
 function App() {
   return (
 
@@ -14,10 +14,10 @@ function App() {
         <Routes>
           {/* <Route exact path="/" component={Home} /> */}
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/singup" component={Signup} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/quiz" component={Quiz} />
-          <Route exact path="/result" component={Result} />
+          <Route exact path="/singup" element={<Singup />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/quiz" element={<Quiz />} />
+          <Route exact path="/result" element={<Result />} />
         </Routes>
     </Layout>
     </Router>
