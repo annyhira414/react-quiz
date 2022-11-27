@@ -7,7 +7,9 @@ import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import Singup from "./pages/Singup";
 import {AuthProvidert} from "../contexts/AuthContext";
-import PrivateRoute from "./PrivateRoute";
+import PrivateOutlet from "./PrivateOutlet";
+ //import PrivateRoute from "./PrivateRoute";
+
 function App() {
   return (
 
@@ -21,14 +23,26 @@ function App() {
           <Route  path="/singup" element={<Singup />} />
           <Route  path="/login" element={<Login />} />
           
-          <Route  path="/quiz" element={<PrivateRoute />} >
-            <Route  path="abc" element={<Quiz />} />
-          </Route>
-         <PrivateRoute  path="/result" element={<Result />} />
+          {/* ai vabe kora jay thik ache but onno aro akta way korbo 
+          <Route  path="/quiz" element={
+          <PrivateRoute>
+            <Quiz />
+          </PrivateRoute>} > */}
+            {/* <Route  path="abc" element={<Quiz />} /> */}
+          {/* </Route> */}
+
+         {/* <PrivateRoute  path="/result" element={<Result />} /> */}
 
          {/* <PrivateRoute  path="/quiz" element={<Quiz />} />
          <PrivateRoute  path="/result" element={<Result />} /> */}
 
+         {/* new way */}
+
+         <Route path="/*" clement={<PrivateOutlet />}>
+          <Route  path = "quiz" element ={<Quiz />}/>
+          <Route  path = "result" element ={<Result />}/>
+
+         </Route>
         </Routes>
     </Layout>
     </AuthProvidert>

@@ -2,29 +2,23 @@ import { Outlet, Navigate  } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 
-export default function PrivateRoute({ element: Element }) {
+export default function PrivateOutlet() {
   const { currentUser } = useAuth();
+
+  return currentUser ? <Outlet/>: <Navigate to='/login' />;
+}
   
 // hira 
 
-// return currentUser ? (<Outlet
-//     {...rest}>{(props) => <Element {...props} />}
+// {/* // return currentUser ? (<Outlet
+// //     {...rest}>{(props) => <Element {...props} />}
 
-// </Outlet>): 
-// (<Navigate to={'/login'}
+// // </Outlet>):  */}
+// {/* // (<Navigate to={'/login'}
 
-// />)
+// // />) */}
 
   // debashihs 
-// return currentUser ? <Outlet >{(props) => <Element {...props} />}</Outlet>
-
-// : Element={<Navigate to="/login" replace />}
-
-
-
-return currentUser ? <Outlet /> : <Navigate to="/login" replace  />;
-
-
 
 
 // sumit 
@@ -38,7 +32,6 @@ return currentUser ? <Outlet /> : <Navigate to="/login" replace  />;
 //         Element={<Navigate to="/login" replace />} //this is a way to redirect
 //       />
 //     );
-}
 
 
 //App.js e 29, 30 line sumit korse &  PrivateRouter e 9-17 line sumit korse 
