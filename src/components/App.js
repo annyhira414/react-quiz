@@ -6,20 +6,29 @@ import Login from "./pages/Login";
 import Quiz from "./pages/Quiz";
 import Result from "./pages/Result";
 import Singup from "./pages/Singup";
-import {AuthProvidert} from "../contexts/AuthContext"
+import {AuthProvidert} from "../contexts/AuthContext";
+import PrivateRoute from "./PrivateRoute";
 function App() {
   return (
 
     <Router>
       <AuthProvidert>
       <Layout>
-        <Routes>
+       <Routes>
+        
           {/* <Route exact path="/" component={Home} /> */}
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/singup" element={<Singup />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/quiz" element={<Quiz />} />
-          <Route exact path="/result" element={<Result />} />
+          <Route  path="/" element={<Home />} />
+          <Route  path="/singup" element={<Singup />} />
+          <Route  path="/login" element={<Login />} />
+          
+          <Route  path="/quiz" element={<PrivateRoute />} >
+            <Route  path="abc" element={<Quiz />} />
+          </Route>
+         <PrivateRoute  path="/result" element={<Result />} />
+
+         {/* <PrivateRoute  path="/quiz" element={<Quiz />} />
+         <PrivateRoute  path="/result" element={<Result />} /> */}
+
         </Routes>
     </Layout>
     </AuthProvidert>

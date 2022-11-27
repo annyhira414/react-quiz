@@ -1,9 +1,8 @@
-import classes from "../../styles/Singup.module.css";
-import Button from "../Button";
-import Checkbox from "../Checkbox";
-import Form from "../Form";
+
+
 import Illustration from "../Illustration";
-import TextInput from "../TextInput";
+
+import SingupForm from "../SingupForm";
 
 
 export default function Singup() {
@@ -13,18 +12,7 @@ export default function Singup() {
 
       <div className="column">
         <Illustration />
-        <Form className={`${classes.singup} `}>
-          <TextInput type="text" placeholder="Enter name" icon="person" />
-          <TextInput type="text" placeholder="Enter email" icon="alternate_email" />
-          <TextInput type="password" placeholder="Enter password" icon="lock" />
-          <TextInput type="password" placeholder="Confirm name" icon="lock_cloc" />
-         <Checkbox text="I agree to the Terms and  Conditions"/>
-         <Button><samp>Submit now</samp></Button>
-         
-         <div className="info">
-              Already have an account? <a href="login.html">Login</a> instead.
-            </div>
-        </Form>
+        <SingupForm />
       </div>
 
       {/* ai khan thke r form jabe na  */}
