@@ -1,15 +1,54 @@
 import Analysis from "../Analysis";
 import Summary from "../Summary";
-// import{useLocation} from 'react-router-dom'
+import { useLocation, useParams} from 'react-router-dom';
+import useAnswers from "../../hooks/useAnswers";
+import _ from "lodash";
+
 export default function Result(){
-    // const {state} = useLocation()
+    const {state} = useLocation()
 
     // console.log('localll', state);
+    const {id} = useParams();
+    // const {loaction} = useNavigate();
+    // const {state} = loaction;
+    const {qna} = state;
+    const {loading , error, answers} = useAnswers(id); 
+
+    console.log(answers);
+
+    function calcutate(){
+        let score = 0;
+        answers.forEach((question,index1) =>{
+            let correctIndexes = [],
+            checkedIndexs = [];
+
+            question.options.forEach((option,index2) =>{
+                if(option.correct) correctIndexes.push(index2);
+                if(qna[index1].options[index2].checked){
+                    checkedIndexs.push(index2);
+                    option.checked = true;
+                }
+            });
+
+            // same 2 array ?
+            if(_.isEqual(correctIndexes ,checkedIndexs)){
+                score = score + 5;
+            }
+        });
+        return score;  
+    }
+
+    const userScore = calcutate();
     return(
         <>
-        <Summary />
-        <Analysis />
-        
+        {loading && <div>Loading...</div>}
+        {error && <div>there is an error</div>}
+        {answers && answers.length > 0 && (
+       <>
+        <Summary  score ={userScore} noq={answers.length}/>
+        <Analysis answers ={answers}/>
+        </>
+        )}
         </>
     )
 }

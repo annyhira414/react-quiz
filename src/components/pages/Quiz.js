@@ -113,7 +113,7 @@ const percentage = questions.length > 0 ? ((currentQuestion + 1) / questions.len
           />
           <ProgressBar next={nextQuestion} 
            prev = {prevQuestion}  
-            submit={submit}
+           submit={submit}
            progress ={percentage}
            />
           <MiniPlayer />
