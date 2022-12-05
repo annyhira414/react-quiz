@@ -5,8 +5,8 @@ import MiniPlayer from "../MiniPlayer";
 import ProgressBar from "../ProgressBar";
 import useQuestions from "../../hooks/useQuestions";
 import _ from "lodash";
-import {useAuth} from "../../contexts/AuthContext"
-import { getDatabase, set ,  ref } from "firebase/database";
+import { useAuth } from "../../contexts/AuthContext";
+import { getDatabase, set, ref } from "firebase/database";
 
 // userReducer e kaj gula
 // action mulotu ai jaiya akta objcet r type property maje ai action ta ache 13
@@ -40,9 +40,9 @@ export default function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const [qna, dispatch] = useReducer(reducer, initialState);
-   const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
 
-   const navigate =  useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch({
@@ -60,40 +60,38 @@ export default function Quiz() {
     });
   }
 
-   // handle when the user clicks the next button to get the next button 
- function nextQuestion(){
-  //  
-  if(currentQuestion + 1 < questions.length){
-    setCurrentQuestion((prevCurrent) => prevCurrent + 1);
-  }
- }
-
- 
-   // handle when the user clicks the next button to get the next button 
-   function prevQuestion(){
-    if(currentQuestion >= 1 && currentQuestion <= questions.length){
+  // handle when the user clicks the next button to get the next button
+  function nextQuestion() {
+    //
+    if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion((prevCurrent) => prevCurrent + 1);
     }
-   } 
+  }
 
-   // submit Quiz
-   async function submit(){
-      const {uid} = currentUser;  // get from firebase
-      const db = getDatabase();
+  // handle when the user clicks the next button to get the next button
+  function prevQuestion() {
+    if (currentQuestion >= 1 && currentQuestion <= questions.length) {
+      setCurrentQuestion((prevCurrent) => prevCurrent + 1);
+    }
+  }
 
-      const resultRef = ref(db , `result/${uid}`); 
+  // submit Quiz
+  async function submit() {
+    const { uid } = currentUser; // get from firebase
+    const db = getDatabase();
 
-      await set(resultRef, {
-        [id]: qna
-      });
-      // navigate("/");
-      // navigate to=`/result &{id}`  state={qna} ;
-     navigate(`/result/${id}`, {state:{qna,}})
-   }
-  
+    const resultRef = ref(db, `result/${uid}`);
 
-const percentage = questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0 ;
+    await set(resultRef, {
+      [id]: qna,
+    });
+    // navigate("/");
+    // navigate to=`/result &{id}`  state={qna} ;
+    navigate(`/result/${id}`, { state: { qna } });
+  }
 
+  const percentage =
+    questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
 
   return (
     <>
@@ -101,22 +99,21 @@ const percentage = questions.length > 0 ? ((currentQuestion + 1) / questions.len
       {error && <div>there is a error</div>}
       {!loading && !error && qna.length > 0 && (
         <>
-          <h1>{qna[currentQuestion].title}
-        
-          </h1>
-        
+          <h1>{qna[currentQuestion].title}</h1>
 
           <h4>Question can have multiple answers</h4>
           <Answers
+            input={true}
             options={qna[currentQuestion].options}
             handerChange={handleAnswerChange}
           />
-          <ProgressBar next={nextQuestion} 
-           prev = {prevQuestion}  
-           submit={submit}
-           progress ={percentage}
-           />
-          <MiniPlayer />
+          <ProgressBar
+            next={nextQuestion}
+            prev={prevQuestion}
+            submit={submit}
+            progress={percentage}
+          />
+          <MiniPlayer id={id} title={qna[currentQuestion].title} />
         </>
       )}
     </>

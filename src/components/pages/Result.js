@@ -1,4 +1,4 @@
-import Analysis from "../Analysis";
+import Analysis from  "../Analysis";
 import Summary from "../Summary";
 import { useLocation, useParams} from 'react-router-dom';
 import useAnswers from "../../hooks/useAnswers";
@@ -20,18 +20,18 @@ export default function Result(){
         let score = 0;
         answers.forEach((question,index1) =>{
             let correctIndexes = [],
-            checkedIndexs = [];
+            checkedIndexes = [];
 
             question.options.forEach((option,index2) =>{
                 if(option.correct) correctIndexes.push(index2);
                 if(qna[index1].options[index2].checked){
-                    checkedIndexs.push(index2);
+                    checkedIndexes.push(index2);
                     option.checked = true;
                 }
             });
 
             // same 2 array ?
-            if(_.isEqual(correctIndexes ,checkedIndexs)){
+            if(_.isEqual(correctIndexes ,checkedIndexes)){
                 score = score + 5;
             }
         });

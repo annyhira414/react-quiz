@@ -11,9 +11,9 @@ export default function Question({answers = []  }) {
             {answers.title}
           </div>
   
-          <Answers options={answer.option}/>
+          <Answers input={false} options={answer.options}/>
         </div>
 
-  
+    
   ));
 }

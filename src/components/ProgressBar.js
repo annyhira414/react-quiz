@@ -10,13 +10,15 @@ export default function ProgressBar( {next , prev , progress, submit}) {
           <span className="material-icons-outlined"> arrow_back </span>
         </div>
         <div className={classes.rangeArea}>
-          <div className={classes.tooltip}>{progress}% Cimplete!</div>
+          <div className={classes.tooltip} >{progress}% Cimplete!</div>
           <div className={classes.rangeBody}>
             <div className={classes.progress} style={{ width: `${progress}%` }}></div>
           </div>
         </div>
-         <Button className={classes.next}  onClick={ progress === 100 ? submit : next} >
-            <span>Next Question</span>
+         <Button className={classes.next} 
+          onClick={ progress === 100 ? submit : next} 
+          >
+            <span>{progress === 100 ? "Submit Quiz" : "Next Question"}</span>
             <span className="material-icons-outlined"> arrow_forward </span>
           </Button> 
            
