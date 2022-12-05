@@ -43,7 +43,7 @@ export default function MiniPlayer({ title , id }) {
           playing={status}
           controls
         />
-        <p>{title}</p>{" "}
+        <p>{title}</p>
       </div>
    
   ); 

@@ -24,7 +24,7 @@ export default function Answers({ options = [], handerChange, input }) {
             null 
           }`}
           text={option.title}
-          defaultchecked={option.checked}
+          defaultChecked={option.checked}
           disabled
         />
         )}

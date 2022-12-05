@@ -18,8 +18,7 @@ export default function Summary({ score, noq }) {
 
   const { loading, error, result } = useFetch(
     `https://api.pexels.com/v1/search?query=${getKeyword}&per_page=1`,
-    "GET",
-
+     "GET",
     {
       Authorization: process.env.REACT_APP_PEXELS_API_KEY,
     }
